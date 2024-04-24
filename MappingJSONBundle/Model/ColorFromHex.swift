@@ -42,7 +42,7 @@ func colorFromHexString(_ hex: String) -> Color {
         return Color(red: 0, green: 0, blue: 0)
     }
     
-    let results = Color(red: Double(r), green: Double(g), blue: Double(b) / 255.0)
+    let results = Color(red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255)
     
-    return Color.red
+    return results
 }

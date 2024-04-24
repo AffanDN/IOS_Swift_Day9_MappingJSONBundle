@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    let colorData = ColorData.loadColorData()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(colorData) { item in
+                    HStack (spacing: 16) {
+                        Image(systemName: item.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:50, height: 50)
+                            .padding()
+                            .background(item.uiColor)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                        Text(item.name)
+                            .font(.system(.title, design: .rounded))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    }
+                }
+            }
+            .navigationTitle("Color")
         }
-        .padding()
     }
 }
 
