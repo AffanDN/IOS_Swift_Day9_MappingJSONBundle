@@ -13,19 +13,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(colorData) { item in
-                    HStack (spacing: 16) {
-                        Image(systemName: item.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width:50, height: 50)
-                            .padding()
-                            .background(item.uiColor)
-                            .foregroundStyle(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                        Text(item.name)
-                            .font(.system(.title, design: .rounded))
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    }
+                    ColorRow(data: item)
                 }
             }
             .navigationTitle("Color")
@@ -35,4 +23,23 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+struct ColorRow: View {
+    var data: ColorData
+    var body: some View {
+        HStack (spacing: 16) {
+            data.uiImage
+                .resizable()
+                .scaledToFit()
+                .frame(width:50, height: 50)
+                .padding()
+                .background(data.uiColor)
+                .foregroundStyle(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            Text(data.name)
+                .font(.system(.title, design: .rounded))
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+        }
+    }
 }
